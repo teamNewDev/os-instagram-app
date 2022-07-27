@@ -6,7 +6,7 @@ import Skeleton from './LoadingScreen/Skeleton';
 import Modal from './Modals/Modal';
 
 const Gallery = () => {
-  const allPhotos = useLiveQuery(() => db.gallery.toArray());
+  const allPhotos = useLiveQuery(() => db.gallery.toArray(), []);
   const [openModal, setOpenModal] = useState(false);
 
   const addPhoto = async () => {
@@ -26,7 +26,6 @@ const Gallery = () => {
         </div>
       </label>
 
-      <Modal open={openModal} onClose={() => setOpenModal(false)} />
       {!allPhotos ? (
         <Skeleton type='custom' />
       ) : (
@@ -34,10 +33,14 @@ const Gallery = () => {
           {allPhotos?.map((photo) => (
             <div className='item' key={photo.id}>
               <img src={photo.url} className='item-image' alt='images' />
+              <Modal
+                open={openModal}
+                onClose={() => setOpenModal(false)}
+                remove={() => removePhoto(photo.id)}
+              />
               <button
                 className='delete-button'
                 onClick={() => setOpenModal(true)}
-                remove={() => removePhoto(photo.id)}
               >
                 Delete
               </button>

@@ -13,22 +13,22 @@
 .userContainer {
   width: 90%;
   height: 7.4em;
-  margin-bottom: 1.9em;
+  /* margin-bottom: 1.5em; */
   animation: skeleton 1.5s ease infinite alternate;
 }
 
 .userName {
-  width: 15.6em;
+  width: 15em;
   height: 45px;
   margin-top: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   border-radius: 5px;
   background-color: #dddddd;
 }
 
 .aboutUser {
   width: 100%;
-  height: 50px;
+  height: 45px;
   margin-top: 15px;
   border-radius: 5px;
   background-color: #dddddd;
