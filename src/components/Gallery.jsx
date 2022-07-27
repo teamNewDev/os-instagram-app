@@ -28,7 +28,7 @@ const Gallery = () => {
 
       <Modal open={openModal} onClose={() => setOpenModal(false)} />
       {!allPhotos ? (
-        <Skeleton type='photo' />
+        <Skeleton type='custom' />
       ) : (
         <section className='gallery'>
           {allPhotos?.map((photo) => (
