@@ -8,6 +8,7 @@ import Modal from './Modals/Modal';
 const Gallery = () => {
   const allPhotos = useLiveQuery(() => db.gallery.toArray(), []);
   const [openModal, setOpenModal] = useState(false);
+  const [id, setId] = useState('');
 
   const addPhoto = async () => {
     db.gallery.add({
@@ -16,6 +17,39 @@ const Gallery = () => {
   };
 
   const removePhoto = (id) => db.gallery.delete(id);
+
+  // const removeAllPhotos = async (id) => {
+  //   db.gallery.delete(id);
+  //   let allImages = await db.gallery.toArray();
+  // };
+
+  let displayPhotoCondition;
+  if (allPhotos) {
+    displayPhotoCondition = (
+      <section className='gallery'>
+        {allPhotos?.length < 1 && <p>No images in the database</p>}
+        {allPhotos?.map((photo) => (
+          <div className='item' key={photo.id}>
+            <img src={photo.url} className='item-image' alt='images' />
+            <button
+              className='delete-button'
+              onClick={() => {
+                setOpenModal(true);
+                setId(photo.id);
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        ))}
+      </section>
+    );
+  } else if (!allPhotos) {
+    displayPhotoCondition = <Skeleton type='custom' />;
+    setTimeout(() => {
+      return displayPhotoCondition;
+    }, 4000);
+  }
 
   return (
     <>
@@ -26,28 +60,13 @@ const Gallery = () => {
         </div>
       </label>
 
-      {!allPhotos ? (
-        <Skeleton type='custom' />
-      ) : (
-        <section className='gallery'>
-          {allPhotos?.map((photo) => (
-            <div className='item' key={photo.id}>
-              <img src={photo.url} className='item-image' alt='images' />
-              <Modal
-                open={openModal}
-                onClose={() => setOpenModal(false)}
-                remove={() => removePhoto(photo.id)}
-              />
-              <button
-                className='delete-button'
-                onClick={() => setOpenModal(true)}
-              >
-                Delete
-              </button>
-            </div>
-          ))}
-        </section>
-      )}
+      {displayPhotoCondition}
+      <Modal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        remove={removePhoto}
+        id={id}
+      />
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import './modal.css';
 
-const Modal = ({ open, onClose, remove }) => {
+const Modal = ({ open, onClose, remove, id }) => {
   if (!open) return null;
   return (
     <div className='modalBackgound'>
@@ -19,7 +19,14 @@ const Modal = ({ open, onClose, remove }) => {
           <button onClick={() => onClose(false)} id='cancelBtn'>
             NO
           </button>
-          <button onClick={() => remove()}>YES</button>
+          <button
+            onClick={() => {
+              onClose(false);
+              remove(id);
+            }}
+          >
+            YES
+          </button>
         </div>
       </div>
     </div>

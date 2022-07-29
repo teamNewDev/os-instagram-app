@@ -59,13 +59,17 @@ const Bio = () => {
     <button onClick={() => setEditFormVisible(true)}>Edit</button>
   );
 
-  let displayPhotoCondition;
+  let displayProfileCondition;
   if (!profilePhoto) {
-    displayPhotoCondition = <Skeleton type='profile' />;
+    displayProfileCondition = <p>Set your profile photo</p> || (
+      <Skeleton type='profile' />
+    );
+    setTimeout(() => {
+      return displayProfileCondition;
+    }, 4000);
+    // displayProfileCondition = <Skeleton type='profile' />;
   } else if (profilePhoto) {
-    displayPhotoCondition = <img src={profilePhoto} alt='' />;
-  } else {
-    displayPhotoCondition = <p>Set your profile photo</p>;
+    displayProfileCondition = <img src={profilePhoto} alt='' />;
   }
 
   return (
@@ -82,7 +86,7 @@ const Bio = () => {
           role='button'
           title='Click to edit profile'
         >
-          {displayPhotoCondition}
+          {displayProfileCondition}
         </div>
       </label>
 

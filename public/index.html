@@ -25,5 +25,12 @@
       src="https://kit.fontawesome.com/88ca11e94c.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js');
+        });
+      }
+    </script>
   </body>
 </html>

@@ -5,3 +5,6 @@ db.version(3).stores({
   bio: ',name, about',
   gallery: '++id, url',
 });
+db.open().catch((error) => {
+  console.log(error.stack || error);
+});
