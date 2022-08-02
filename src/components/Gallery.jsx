@@ -6,9 +6,10 @@ import Skeleton from './LoadingScreen/Skeleton';
 import Modal from './Modals/Modal';
 
 const Gallery = () => {
-  const allPhotos = useLiveQuery(() => db.gallery.toArray(), []);
+  const allPhotos = useLiveQuery(() => db.gallery.reverse().toArray(), []);
   const [openModal, setOpenModal] = useState(false);
   const [id, setId] = useState('');
+  // const [currentItem, setCurrentItem] = useState([]);
 
   const addPhoto = async () => {
     db.gallery.add({
@@ -18,10 +19,12 @@ const Gallery = () => {
 
   const removePhoto = (id) => db.gallery.delete(id);
 
-  // const removeAllPhotos = async (id) => {
-  //   db.gallery.delete(id);
-  //   let allImages = await db.gallery.toArray();
-  // };
+  // const clearAll = () =>
+  //   allPhotos?.forEach((img) => {
+  //     removePhoto(img.id);
+  //   });
+
+  // const removeAllPhoto = () => db.gallery.clear();
 
   let displayPhotoCondition;
   if (allPhotos) {

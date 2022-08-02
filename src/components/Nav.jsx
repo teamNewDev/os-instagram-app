@@ -10,16 +10,16 @@ const Nav = () => {
       <input type='text' className='search' placeholder='Search...' />
       <span className='nav-links'>
         <button>
-          <i className='fas fa-home'></i>
+          <i className='fas fa-home nav-icon'></i>
         </button>
         <button>
-          <i className='fas fa-comment-alt'></i>
+          <i className='fas fa-comment-alt nav-icon'></i>
         </button>
         <button>
-          <i className='fas fa-compass'></i>
+          <i className='fas fa-compass nav-icon'></i>
         </button>
         <button>
-          <i className='fas fa-heart'></i>
+          <i className='fas fa-heart nav-icon'></i>
         </button>
       </span>
     </nav>

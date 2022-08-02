@@ -200,3 +200,86 @@ nav {
 .item:hover .delete-button {
   opacity: 1;
 }
+
+@media screen and (max-width: 700px) and (min-width: 20px) {
+  nav {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  nav .logo {
+    width: 20px;
+    margin-left: 10px;
+  }
+
+  nav .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  nav .nav-icon {
+    padding: 10px 0;
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3em 0 2em 0;
+  }
+
+  .profile-photo {
+    width: 10em;
+    height: 10em;
+    margin: 0 auto;
+  }
+
+  .profile-info .name {
+    font-size: 1.1em;
+    padding: 0 auto;
+    text-align: center;
+  }
+
+  .profile-info .about {
+    font-size: 1em;
+  }
+
+  .profile-info button {
+    font-size: 1em;
+    width: 5em;
+    height: 2em;
+  }
+
+  .edit-bio-form #aboutMe {
+    width: 100%;
+  }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .gallery .item {
+    width: 100%;
+  }
+
+  .delete-button {
+    position: absolute;
+    align-items: center;
+    opacity: 0;
+    margin-left: -14.5em;
+  }
+
+  .add-photo-button {
+    position: fixed;
+    bottom: 5em;
+    right: 2em;
+    cursor: pointer;
+    transform: scale(3);
+  }
+}
