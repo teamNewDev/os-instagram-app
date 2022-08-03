@@ -13,15 +13,16 @@ button {
 }
 
 nav {
-  position: fixed;
-  display: grid;
-  top: 0;
-  background-color: #fff;
-  height: 3.3em;
-  line-height: 3.3em;
   width: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  height: 55px;
+  background-color: #fff;
+  padding: 0 20px;
+  line-height: 3.3em;
   border-bottom: 0.1em solid #dbdbdb;
-  grid-template-columns: 2fr 1fr 1fr 0.5fr;
+  justify-content: space-between;
 }
 
 .logo {
@@ -47,13 +48,14 @@ nav {
 }
 
 .nav-links {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  padding-right: 50px;
 }
 
-.nav-links i {
-  transform: scale(1.6);
-  color: #252525;
+.mobile-menu-icon {
+  display: none;
 }
 
 .container {
@@ -201,7 +203,15 @@ nav {
   opacity: 1;
 }
 
-@media screen and (max-width: 700px) and (min-width: 20px) {
+.removeAll {
+  transform: scale(1.5);
+  position: fixed;
+  bottom: 10em;
+  right: 6.5em;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) and (min-width: 20px) {
   nav {
     width: 100%;
     display: grid;
@@ -211,17 +221,56 @@ nav {
   nav .logo {
     width: 20px;
     margin-left: 10px;
+    padding: 0;
+  }
+
+  nav .search {
+    width: 10em;
   }
 
   nav .nav-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+    flex-flow: column nowrap;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 24vh;
+    width: 100vw;
+    background-color: #dddddd;
+    opacity: 0.9;
+    padding: 0;
+    padding-top: 10px;
+    border-radius: 0 0 10px 10px;
+    display: none;
   }
 
   nav .nav-icon {
     padding: 10px 0;
+  }
+
+  .nav-links-mobile {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 55px;
+    width: 100%;
+    background-color: #dddddd;
+    opacity: 0.9;
+    border-radius: 0 10px 10px 0;
+    transition: all 0.5s ease-out;
+  }
+
+  .inav {
+    width: 100%;
+    padding-right: 40px;
+    transition: all 0.5s ease;
+    /* border: 1px solid black; */
+  }
+  .mobile-menu-icon {
+    display: block;
+    position: absolute;
+    top: 9px;
+    right: 55px;
+    cursor: pointer;
   }
 
   .bio {
@@ -236,6 +285,7 @@ nav {
     width: 10em;
     height: 10em;
     margin: 0 auto;
+    margin-top: 10px;
   }
 
   .profile-info .name {
@@ -281,5 +331,10 @@ nav {
     right: 2em;
     cursor: pointer;
     transform: scale(3);
+  }
+
+  .removeAll {
+    bottom: 10em;
+    right: 1.7em;
   }
 }

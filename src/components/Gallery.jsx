@@ -4,12 +4,12 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../database';
 import Skeleton from './LoadingScreen/Skeleton';
 import Modal from './Modals/Modal';
+import { SquarePlusIcon, DeleteIcon } from '../offlineIcons/Icons';
 
 const Gallery = () => {
   const allPhotos = useLiveQuery(() => db.gallery.reverse().toArray(), []);
   const [openModal, setOpenModal] = useState(false);
   const [id, setId] = useState('');
-  // const [currentItem, setCurrentItem] = useState([]);
 
   const addPhoto = async () => {
     db.gallery.add({
@@ -19,12 +19,7 @@ const Gallery = () => {
 
   const removePhoto = (id) => db.gallery.delete(id);
 
-  // const clearAll = () =>
-  //   allPhotos?.forEach((img) => {
-  //     removePhoto(img.id);
-  //   });
-
-  // const removeAllPhoto = () => db.gallery.clear();
+  const clearAll = async () => await db.gallery.clear();
 
   let displayPhotoCondition;
   if (allPhotos) {
@@ -59,7 +54,12 @@ const Gallery = () => {
       <input type='file' name='photo' id='addPhotoInput' />
       <label htmlFor='addPhotoInput' onClick={addPhoto}>
         <div role='button' title='Click to add photo'>
-          <i className='add-photo-button fas fa-plus-square'></i>
+          <SquarePlusIcon className='add-photo-button' />
+        </div>
+      </label>
+      <label htmlFor='removePhoto' onClick={clearAll}>
+        <div role='button' title='Delete All Photo'>
+          <DeleteIcon className='removeAll' fill='#670000' />
         </div>
       </label>
 
